@@ -1,0 +1,18 @@
+body {
+    margin: 1rem;
+}
+
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 5rem;
+    background-color: red;
+    padding: 1rem;
+}
+
+main {
+    margin-top: 10rem;
+    max-width: 30rem;
+}
