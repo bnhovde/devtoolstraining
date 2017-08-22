@@ -1,14 +1,21 @@
 import q from './scripts/utilities/q/';
-import { populateMonsters } from './scripts/monsters';
+import { getMonsterById, getRandomMonster } from './scripts/monsters';
 
 // populateMonsters(3); // 27
 
-// Append click event to button
+// Append click events
 const triggerButton = q('#trigger');
 triggerButton.addEventListener('click', buttonClicked);
+
+const randomButton = q('#random-trigger');
+randomButton.addEventListener('click', randomButtonClicked);
 
 function buttonClicked(e) {
     const monsterId = q('#monster-id');
     const id = parseInt(monsterId.value, 10);
-    populateMonsters(id)
+    getMonsterById(id)
+}
+
+function randomButtonClicked() {
+    getRandomMonster()
 }
