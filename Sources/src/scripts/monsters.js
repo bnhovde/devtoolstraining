@@ -3,15 +3,30 @@ import { getRandomInt } from './utilities/math/';
 
 const MONSTER_LIMIT = 325;
 
-function loadMonster(id) {
-    fetch(`http://www.dnd5eapi.co/api/monsters/${id}`)
-        .then(function(response) {
-            return response.json();
-        }).then(function(json) {
-            console.log('parsed json', json);
-        }).catch(function(ex) {
+function fetchImage(query) {
+    return fetch(`https://api.qwant.com/api/search/images?count=1&q=${query}`)
+        .then(response => response.json())
+        .then(json => json.data)
+        .catch(ex => {
             console.log('parsing failed', ex);
         })
+}
+
+function fetchMonster(id) {
+    return fetch(`http://www.dnd5eapi.co/api/monsters/${id}`)
+        .then(response => response.json())
+        .then(json => json)
+        .catch(ex => {
+            console.log('parsing failed', ex);
+        })
+}
+
+async function loadMonster(id) {
+    const monster = await fetchMonster(id);
+    const image = await fetchImage(monster.name);
+    monster.image = image.result.items[0].thumbnail;
+    console.info('Data: ', monster);
+    return monster;
 }
 
 function getMonsterById(id) {
