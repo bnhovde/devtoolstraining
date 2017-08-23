@@ -1,6 +1,7 @@
 /* global process, __dirname, module */
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
@@ -62,6 +63,8 @@ const config = {
         //     chunks: ['index'], // read from the same entry point as `index.html`
         //     template: './pages/my-page/about.html',
         // }),
+
+        new CopyWebpackPlugin([ { from: 'assets', to: 'assets' } ]),
 
         new webpack.optimize.UglifyJsPlugin({
             mangle: true,

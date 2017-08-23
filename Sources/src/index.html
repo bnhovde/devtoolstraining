@@ -2,13 +2,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minimal boilerplate</title>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
+    <link href="assets/ui.css" rel="stylesheet">
 </head>
 <body>
-    <h1 class="greetings">D&amp;D Monster index</h1>
-    <input id="monster-id" value="34" placeholder="Monster ID (1 to 325)" />
-    <button id="trigger">Show me the monster!</button>
+    <header>
+        <h1 class="greetings">Monster index</h1>
+    </header>
 
-    <button id="random-trigger">Get random monster!</button>
+    <section class="input-fields">
+        <input id="monster-id" value="34" placeholder="Monster ID (1 to 325)" />
+        <button id="trigger">Show me the monster!</button>
+        <button id="random-trigger">Get random monster!</button>
+    </section>
 
     <section id="monster-stats">
         <h2>Monster stats:</h2>

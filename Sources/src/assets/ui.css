@@ -1,0 +1,32 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+  padding: 5%;
+  text-align: center;
+}
+
+.input-fields {
+  text-align: center;
+}
+
+input {
+  padding: 1rem;
+  font-size: 1rem;
+}
