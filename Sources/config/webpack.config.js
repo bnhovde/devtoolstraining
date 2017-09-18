@@ -23,7 +23,7 @@ const config = {
     context: projectDir + '/src',
     devtool: 'source-map',
     entry: {
-        'index': './index.js',
+        'index': './index.valid.js',
         // If you want to add more entry points, just pass the path to your JS file
         // 'my-page': './pages/my-page/index.js',
     },
