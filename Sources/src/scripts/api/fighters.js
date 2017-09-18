@@ -1,18 +1,6 @@
 import 'whatwg-fetch';
-import { getRandomInt } from './utilities/math/';
 
-const MONSTER_LIMIT = 325;
-
-function fetchImage(query) {
-    return fetch(`https://api.qwant.com/api/search/images?count=1&q=${query}`)
-        .then(response => response.json())
-        .then(json => json.data)
-        .catch(ex => {
-            console.log('parsing failed', ex);
-        })
-}
-
-function fetchMonster(id) {
+function fetch(id) {
     return fetch(`http://www.dnd5eapi.co/api/monsters/${id}`)
         .then(response => response.json())
         .then(json => json)
@@ -22,7 +10,7 @@ function fetchMonster(id) {
 }
 
 async function loadMonster(id) {
-    const monster = await fetchMonster(id);
+    const monster = await fetch(id);
     const image = await fetchImage(monster.name);
     monster.image = image.result.items[0].thumbnail;
     console.info('Data: ', monster);
