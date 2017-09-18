@@ -23,13 +23,12 @@ const config = {
     context: projectDir + '/src',
     devtool: 'source-map',
     entry: {
-        'index': './index.valid.js',
-        // If you want to add more entry points, just pass the path to your JS file
-        // 'my-page': './pages/my-page/index.js',
+        'dashboard': './pages/dashboard/index.js',
+        'monsters': './pages/monsters/index.js',
     },
     output: {
-        filename: isDev ? '[name].js' : '[name].[chunkhash].js',
         path: path.resolve(projectDir, 'build'),
+        filename: isDev ? '[name].js' : '[name].[chunkhash].js',
     },
     module: {
         rules: [
@@ -48,8 +47,15 @@ const config = {
     plugins: [
         // YOUR PROJECT PAGES
         new HtmlWebpackPlugin({
-            chunks: ['index'],
-            template: './index.html',
+            filename: 'index.html',
+            chunks: ['dashboard'],
+            template: 'pages/dashboard/index.html',
+        }),
+
+        new HtmlWebpackPlugin({
+            filename: 'monsters.html',
+            chunks: ['monsters'],
+            template: 'pages/monsters/index.html',
         }),
 
         // If you want to add more pages, just pass the path to your .thml file

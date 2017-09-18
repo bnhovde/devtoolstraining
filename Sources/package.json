@@ -30,6 +30,7 @@
     "test": "export NODE_ENV=test && node --harmony_proxies node_modules/jest/bin/jest.js --coverage"
   },
   "dependencies": {
+    "@sanity/client": "^0.111.5",
     "lodash": "^4.17.4",
     "whatwg-fetch": "^2.0.3"
   }

@@ -1,5 +1,5 @@
-import q from './scripts/utilities/q/';
-import { getMonsterById, getRandomMonster } from './scripts/monsters';
+import q from '../../scripts/utilities/q/';
+import { getMonsterById, getRandomMonster } from '../../scripts/api/monsters';
 
 
 /**

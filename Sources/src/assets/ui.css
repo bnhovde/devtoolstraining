@@ -30,3 +30,12 @@ input {
   padding: 1rem;
   font-size: 1rem;
 }
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+nav > a {
+  margin: 1rem;
+}

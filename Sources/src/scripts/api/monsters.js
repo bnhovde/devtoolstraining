@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import { getRandomInt } from './utilities/math/';
+import { getRandomInt } from '../utilities/math/';
 
 const MONSTER_LIMIT = 325;
 
