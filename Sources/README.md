@@ -69,3 +69,4 @@ The sources tab is incredibly useful for debugging JS.
 
 - Use console.table to print out array/object contents
 - Use "make global variable" to copy the contents of a variable to the clipboard
+- Breakpoints not adding? Try pretty-printing first.

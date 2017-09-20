@@ -14,7 +14,7 @@ async function initPeople() {
             "image": image.asset->url
         }`
     const results = await client.fetch(query);
-    people = results;
+    people.results = results;
 }
 
 function getRandomPerson() {
