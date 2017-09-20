@@ -21,8 +21,8 @@ class Fighter {
      * @function addMonster
      * @desc Adds a new monster to fighter
      */
-    addMonster(id) {
-        this.monsters.push(id);
+    addMonster(monster) {
+        this.monsters.push(monster);
     };
 };
 

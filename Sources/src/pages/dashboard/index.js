@@ -64,8 +64,8 @@ const Dashboard = () => {
     async function addMonster(e) {
         const fighterWrapper = findParent('li', e.target);
         const targetFighter = fighters.find(f => f.id === fighterWrapper.id);
-        const randomMonster = await getRandomMonster();
-        targetFighter.monsters.push(randomMonster);
+        const randomMonster = getRandomMonster();
+        targetFighter.addMonster(randomMonster);
         updateDOM();
     }
 
