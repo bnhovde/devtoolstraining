@@ -4,7 +4,7 @@ import { getRandomInt } from '../utilities/math/';
 const MONSTER_LIMIT = 325;
 
 function fetchImage(query) {
-    return fetch(`https://api.qwant.com/api/search/images?count=1&q=${query}`)
+    return fetch(`api/search/images?count=1&q=${query}`)
         .then(response => response.json())
         .then(json => json.data)
         .catch(ex => {

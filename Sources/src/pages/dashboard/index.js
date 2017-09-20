@@ -1,11 +1,9 @@
-import sanityClient from '@sanity/client';
 import q from '../../scripts/utilities/q/';
+import findParent from '../../scripts/utilities/findParent/';
 import Fighter from '../../scripts/fighter';
-
-const client = sanityClient({
-  projectId: 'l3oee2le',
-  dataset: 'production',
-});
+import { buildFighterMarkup } from '../../scripts/utilities/dom/';
+import { initPeople, getRandomPerson } from '../../scripts/api/people';
+import { getRandomMonster } from '../../scripts/api/monsters';
 
 
 /**
@@ -15,11 +13,12 @@ const client = sanityClient({
  */
 const Dashboard = () => {
 
-    const fighters = [];
+    let fighters = [];
 
     // DOM selectors
     const DOM = {
         fighterButton: q('#create-fighter-button'),
+        startBattleButton: q('#commence-battle-button'),
         monsterButton: q('#add-monster-button'),
         outputEl: q('#fighters'),
     };
@@ -30,6 +29,8 @@ const Dashboard = () => {
      */
     function bindEvents() {
         DOM.fighterButton.addEventListener('click', createFighter);
+        DOM.startBattleButton.addEventListener('click', startBattle);
+        DOM.outputEl.addEventListener('click', addMonster);
     }
 
     /**
@@ -37,40 +38,58 @@ const Dashboard = () => {
      * @desc Print all current fighters to the DOM
      */
     function updateDOM(e) {
-        const ul = document.createElement('ul');
-
-        for (let fighter of fighters) {
-            let li = document.createElement('li');
-            li.appendChild(document.createTextNode(fighter.name));
-            ul.appendChild(li);
-        }
+        const markup = buildFighterMarkup(fighters);
 
         DOM.outputEl.innerHTML = '';
-        DOM.outputEl.appendChild(ul);
+        DOM.outputEl.appendChild(markup);
     }
 
     /**
      * @function createFighter
-     * @desc Get monster by user entered ID
+     * @desc Add a new fighter to the arena
      * @param {event} event - mouseevent
      */
-    async function createFighter(e) {
-        const query = '*[_type == "person"]'
-        const data = await client.fetch(query);
-
-        const fighter = new Fighter(data);
+    function createFighter(e) {
+        const person = getRandomPerson();
+        const fighter = new Fighter(person);
         fighters.push(fighter);
         updateDOM();
     }
 
     /**
      * @function addMonster
-     * @desc Get monster by user entered ID
+     * @desc Add a new monster to a fighter
      * @param {event} event - mouseevent
      */
     async function addMonster(e) {
-        const fighter = new fighter;
-        console.log('fighter', fighter);
+        const fighterWrapper = findParent('li', e.target);
+        const targetFighter = fighters.find(f => f.id === fighterWrapper.id);
+        const randomMonster = await getRandomMonster();
+        targetFighter.monsters.push(randomMonster);
+        updateDOM();
+    }
+
+    /**
+     * @function startBattle
+     * @desc Add a new monster to a fighter
+     * @param {event} event - mouseevent
+     */
+    function startBattle() {
+
+        const winner = fighters.reduce((winner, challenger) => {
+            const challengerScore = challenger.monsters.reduce((sum, monster) => {
+                return sum + monster.hit_points
+            }, 0);
+            const challengerObj = {
+                name: challenger.name,
+                score: challengerScore,
+            }
+            return challengerScore > winner.score ? challengerObj : winner;
+        }, { name: 'test', score: 0 });
+
+        alert(`And the winner is: ${winner.name}`)
+        DOM.outputEl.innerHTML = '';
+        fighters = [];
     }
 
 
@@ -79,6 +98,9 @@ const Dashboard = () => {
      * @desc Initialises the app
      */
     function init() {
+
+        // Load people
+        initPeople();
 
         // Attach click events
         bindEvents();

@@ -8,11 +8,12 @@ class Fighter {
     /**
      * @function constructor
      * @desc Fighter constructor
-     * @param {int} id
+     * @param {object} data - Person data
      */
-    constructor(id) {
-        this.id = id;
-        this.name = 'test';
+    constructor(data) {
+        this.id = data._id;
+        this.name = data.name;
+        this.image = data.image;
         this.monsters = [];
     }
 

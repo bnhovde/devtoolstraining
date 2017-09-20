@@ -42,7 +42,15 @@ const config = {
     devServer: {
         contentBase: path.resolve(__dirname, 'build'),
         compress: true,
-        port: 3000
+        port: 3000,
+        proxy: {
+            "/api": {
+                "target": 'https://api.qwant.com/api',
+                "pathRewrite": { '^/api': '' },
+                "changeOrigin": true,
+                "secure": false
+            }
+        }
     },
     plugins: [
         // YOUR PROJECT PAGES

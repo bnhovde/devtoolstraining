@@ -18,7 +18,7 @@ body {
 }
 
 header {
-  padding: 5%;
+  padding: 2%;
   text-align: center;
 }
 
@@ -38,4 +38,48 @@ nav {
 }
 nav > a {
   margin: 1rem;
+}
+
+button {
+  padding: 1rem;
+  background-color: #00BCD4;
+  border: 0;
+  font-size: 1rem;
+  color: white;
+}
+
+.fighters ul {
+  padding: 0;
+  margin: 0;
+}
+
+.fighter {
+  padding: 1rem;
+  margin: 1rem;
+  list-style: none;
+  border-bottom: 5px solid whitesmoke;
+}
+
+.fighter__contents {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fighter__monsters {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.fighter__monsters li {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.fighter__monsters img {
+  margin: 0 1rem;
+  max-width: 200px;
+  max-height: 200px;
 }
